@@ -18,17 +18,17 @@
               </div>
 
               <div class="col-md-4 mb-3">
-                <label class="sr-only">City</label>
-                <input type="text" name="city" class="form-control" placeholder="City" value="{{ values.city }}">
+                <label class="sr-only">town</label>
+                <input type="text" name="city" class="form-control" placeholder="town" value="{{ values.town }}">
               </div>
 
               <div class="col-md-4 mb-3">
-                <label class="sr-only">State</label>
+                <label class="sr-only">district</label>
                 <select name="state" class="form-control">
-                  <option selected="true" disabled="disabled">State (All)</option>
-                  {% for key,value in state_choices.items %}
+                  <option selected="true" disabled="disabled">districts (All)</option>
+                  {% for key,value in district_choices.items %}
                       <option value="{{ key }}" 
-                      {% if key == values.state %}
+                      {% if key == values.district %}
                         selected
                       {% endif %}
                       >{{ value }}</option>
@@ -107,7 +107,7 @@
                   <div class="listing-heading text-center">
                     <h4 class="text-primary">{{ listing.title }}</h4>
                     <p>
-                      <i class="fas fa-map-marker text-secondary"></i> {{ listing.city }} {{ listing.state }}, {{ listing.zipcode }}</p>
+                      <i class="fas fa-map-marker text-secondary"></i> {{ listing.town }} {{ listing.district }}, {{ listing.zipcode }}</p>
                   </div>
                   <hr>
                   <div class="row py-2 text-secondary">
