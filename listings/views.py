@@ -39,7 +39,7 @@ def search(request):
   if 'district' in request.GET:
     district = request.GET['district']
     if district:
-      queryset_list = queryset_list.filter(city__iexact=district)
+      queryset_list = queryset_list.filter(district__iexact=district)
 
   # town
   if 'town' in request.GET:
