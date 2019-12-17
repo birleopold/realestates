@@ -83,7 +83,7 @@
                 <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="">
                 <div class="card-img-overlay">
                   <h2>
-                    <span class="badge badge-secondary text-white">UgX{{ listing.price | intcomma }}</span>
+                    <span class="badge badge-secondary text-white">{% if listing.for_sale %}Sale {% else %} Rent  {% endif %} UgX{{ listing.price | intcomma }} </span>
                   </h2>
                 </div>
                 <div class="card-body">
@@ -116,6 +116,53 @@
                   </div>
                   <hr>
                   <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">More Info</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="col-md-12">
+            <p>No Listings Available</p>
+          </div>
+        {% endif %}
+
+      </div>
+       <div class="row">
+        {% if land %}
+          {% for plot in land %}
+            <!-- Listing 1 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card listing-preview">
+                <img class="card-img-top" src="{{ plot.photo_main.url }}" alt="">
+                <div class="card-img-overlay">
+                  <h2>
+                    <span class="badge badge-secondary text-white">{% if plot.for_sale %}Sale {% else %} Rent  {% endif %} UgX{{ plot.price | intcomma }} </span>
+                  </h2>
+                </div>
+                <div class="card-body">
+                  <div class="listing-heading text-center">
+                    <h4 class="text-primary">{{ plot.title }}</h4>
+                    <p>
+                      <i class="fas fa-map-marker text-secondary"></i> {{ plot.town }} {{ plot.district }}</p>
+                  </div>
+                  <hr>
+                  <div class="row py-2 text-secondary">
+                    <div class="col-6">
+                      <i class="fas fa-th-large"></i> Sqft: {{ plot.sqft }}
+                    </div>
+                    
+                  
+                  <hr>
+                  <div class="row py-2 text-secondary">
+                    <div class="col-6">
+                      <i class="fas fa-user"></i> {{ plot.realtor }}</div>
+                  </div>
+                  <div class="row text-secondary pb-2">
+                    <div class="col-6">
+                      <i class="fas fa-clock"></i> {{ plot.list_date | timesince }}</div>
+                  </div>
+                  <hr>
+                  <a href="{% url 'plot' plot.id %}" class="btn btn-primary btn-block">More Info</a>
                 </div>
               </div>
             </div>

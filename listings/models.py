@@ -9,6 +9,7 @@ class Listing(models.Model):
   district = models.CharField(max_length=100)
   town = models.CharField(max_length=100)
   zipcode = models.CharField(max_length=20)
+  for_sale = models.BooleanField(default=True)
   description = models.TextField(blank=True)
   price = models.IntegerField()
   bedrooms = models.IntegerField()
@@ -25,5 +26,36 @@ class Listing(models.Model):
   photo_6 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
   is_published = models.BooleanField(default=True)
   list_date = models.DateTimeField(default=datetime.now, blank=True)
+
   def __str__(self):
     return self.title
+
+
+class Land(models.Model):
+  realtor = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING)
+  title = models.CharField(max_length=200)
+  address = models.CharField(max_length=200)
+  district = models.CharField(max_length=100)
+  town = models.CharField(max_length=100)
+  distance_to_main_road = models.FloatField()
+  distance_to_power_line = models.FloatField()
+  distance_to_piped_water = models.FloatField()
+  for_sale = models.BooleanField(default=True)
+  land_title = models.BooleanField(default=True)
+  description = models.TextField(blank=True)
+  price = models.IntegerField()
+  sqft = models.IntegerField()
+  lot_size = models.DecimalField(max_digits=5, decimal_places=1)
+  photo_main = models.ImageField(upload_to='photos/%Y/%m/%d/')
+  photo_1 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
+  photo_2 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
+  photo_3 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
+  photo_4 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
+  photo_5 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
+  photo_6 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
+  is_published = models.BooleanField(default=True)
+  list_date = models.DateTimeField(default=datetime.now, blank=True)
+
+  def __str__(self):
+    return self.title
+
